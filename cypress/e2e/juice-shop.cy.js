@@ -33,15 +33,28 @@ describe("Juice-shop scenarios", () => {
       var randomNumberAndGmail = "email_"+Math.round(Math.random()*100000)+"@gmail.com"
       RegistrationPage.registerEmailField.type(randomNumberAndGmail);
       // Fill in password field and repeat password field with same password
+      var password = "@Password123";
+      RegistrationPage.fillPasswordField.type(password);
+      RegistrationPage.repeatPassword.type(password);
       // Click on Security Question menu
+      RegistrationPage.clickSecurityQuestion.click();
       // Select  "Name of your favorite pet?"
+      RegistrationPage.clickPetQuestion.click();
       // Fill in answer
+      RegistrationPage.fillAnswerField.type("vards123");
       // Click Register button
+      RegistrationPage.registerButton.click();
       // Set email value to previously created email
+      LoginPage.userEmailField.type(randomNumberAndGmail);
       // Set password value to previously used password value
+      LoginPage.userPasswordField.type(password);
       // Click login button
+      LoginPage.loginButton.click();
       // Click Account button
+      HomePage.accountButton.click();
       // Validate that account name (with previously created email address) appears in the menu section
+      HomePage.validateName.should("have.text", ` account_circle  ${randomNumberAndGmail}  account_circle  ${randomNumberAndGmail} `);
+
     });
   });
 
