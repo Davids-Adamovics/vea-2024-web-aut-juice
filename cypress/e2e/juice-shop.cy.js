@@ -30,7 +30,7 @@ describe("Juice-shop scenarios", () => {
       // Find - how to generate random number in JS
       // Use that number to genarate unique email address, e.g.: email_7584@ebox.com
       // Save that email address to some variable
-      var randomNumberAndGmail = "email_"+Math.round(Math.random()*100000)+"@gmail.com"
+      var randomNumberAndGmail = "email_" + Math.round(Math.random() * 100000) + "@gmail.com"
       RegistrationPage.registerEmailField.type(randomNumberAndGmail);
       // Fill in password field and repeat password field with same password
       var password = "@Password123";
@@ -64,7 +64,7 @@ describe("Juice-shop scenarios", () => {
       HomePage.visit();
     });
 
-    it.only("Search and validate Lemon", () => {
+    it("Search and validate Lemon", () => {
       // Click on search icon
       HomePage.searchIcon.click();
       // Search for Lemon
@@ -78,22 +78,41 @@ describe("Juice-shop scenarios", () => {
     });
 
     // Create scenario - Search 500ml and validate Lemon, while having multiple cards
-    // Click on search icon
-    // Search for 500ml
-    // Select a product card - Lemon Juice (500ml)
-    // Validate that the card (should) contains "Sour but full of vitamins."
-
+    it("Search 500ml and validate Lemon, while having multiple cards", () => {
+      // Click on search icon
+      HomePage.searchIcon.click();
+      // Search for 500ml
+      HomePage.searchText.type("500ml");
+      HomePage.searchText.type("{enter}");
+      // Select a product card - Lemon Juice (500ml)
+      HomePage.clickLemonCard1.click();
+      // Validate that the card (should) contains "Sour but full of vitamins."
+      HomePage.validateDescription.should('exist').and('have.text', 'Sour but full of vitamins.');
+    });
     // Create scenario - Search 500ml and validate cards
-    // Click on search icon
-    // Search for 500ml
-    // Select a product card - Eggfruit Juice (500ml)
-    // Validate that the card (should) contains "Now with even more exotic flavour."
-    // Close the card
-    // Select a product card - Lemon Juice (500ml)
-    // Validate that the card (should) contains "Sour but full of vitamins."
-    // Close the card
-    // Select a product card - Strawberry Juice (500ml)
-    // Validate that the card (should) contains "Sweet & tasty!"
+    it.only("Search 500ml and validate cards", () => {
+      // Click on search icon
+      HomePage.searchIcon.click();
+      // Search for 500ml
+      HomePage.searchText.type("500ml");
+      HomePage.searchText.type("{enter}");    
+      // Select a product card - Eggfruit Juice (500ml)
+      HomePage.clickEggFruitCard.click();
+      // Validate that the card (should) contains "Now with even more exotic flavour."
+      HomePage.validateDescriptionEggfruit.should('exist').and('have.text', 'Now with even more exotic flavour.');
+      // Close the card
+      HomePage.closeCard.click();
+      // Select a product card - Lemon Juice (500ml)
+      HomePage.clickLemonCard.click();
+      // Validate that the card (should) contains "Sour but full of vitamins."
+      HomePage.validateDescriptionLemon.should('exist').and('have.text', 'Sour but full of vitamins.');
+      // Close the card
+      HomePage.closeCard.click();
+      // Select a product card - Strawberry Juice (500ml)
+      HomePage.clickStrawberryCard.click();
+      // Validate that the card (should) contains "Sweet & tasty!"
+      HomePage.validateStrawberryCard.should('exist').and('have.text', 'Sweet & tasty!');
+    });
 
     // Create scenario - Read a review
     // Click on search icon
@@ -162,5 +181,6 @@ describe("Juice-shop scenarios", () => {
     // Set expiry year to 2090
     // Click Submit button
     // Validate that the card shows up in the list
+
   });
 });

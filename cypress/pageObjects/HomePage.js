@@ -32,7 +32,7 @@ export class HomePage extends BasePage {
   }
   
 
-  // ======== search ======== 
+  // ======== search Lemon======== 
   static get searchIcon(){
     return cy.get("#searchQuery");
   }
@@ -41,13 +41,34 @@ export class HomePage extends BasePage {
     return cy.get("#mat-input-0");
   }
 
-  static get clickLemonCard() {
-    return cy.get("[aria-label='Click for more information about the product']");
-  }
   
-  static get validateDescription(){
+  static get validateDescriptionLemon(){
     return cy.contains('div', 'Sour but full of vitamins.');
   }
+ 
+    // ======== search and click Lemon======== 
+  static get clickLemonCard(){
+    return cy.contains('div', ' Lemon Juice (500ml) ');
+  }
 
+    // ======== Search 500ml and validate cards ======== 
+  static get clickEggFruitCard(){
+    return cy.contains('div', ' Eggfruit Juice (500ml) ');
+  }
 
+  static get validateDescriptionEggfruit(){
+    return cy.contains('div', 'Now with even more exotic flavour.');
+  }
+
+  static get closeCard(){
+    return cy.get("[aria-label='Close Dialog']");
+  }
+
+  static get clickStrawberryCard(){
+    return cy.contains('div', ' Strawberry Juice (500ml) ');
+  }
+
+  static get validateStrawberryCard(){
+    return cy.contains('div', 'Sweet & tasty!');
+  }
 }
