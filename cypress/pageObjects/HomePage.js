@@ -101,4 +101,27 @@ export class HomePage extends BasePage {
     static get validateReviewTastesLikeMEtal(){
       return cy.contains('p', 'Tastes like metal');
     }
+
+    // ======== Validate product card amount ======== 
+
+    static get productCardAmount12(){
+      return cy.contains('span.mat-select-min-line', '12');
+    }
+
+    static get select24products() {
+      return cy.contains('mat-option', '24');
+    }
+
+    static get productCardAmount24(){
+      return cy.contains('span.mat-select-min-line', '24');
+    }
+
+    static get select36products() {
+      return cy.contains('mat-option', '36');
+    }
+
+    static get productCardAmount36(){
+      return cy.contains('span.mat-select-min-line', '36');
+    }
+
 }
