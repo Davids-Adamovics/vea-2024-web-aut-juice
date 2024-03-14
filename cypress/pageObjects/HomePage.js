@@ -124,4 +124,13 @@ export class HomePage extends BasePage {
       return cy.contains('span.mat-select-min-line', '36');
     }
 
+    // ======== Buy Girlie T-shirt ======== 
+
+    static get addToBasketButton(){
+      return cy.get("[aria-label='Add to Basket']");
+    }
+
+    static get checkBasketButton(){
+      return cy.get("[aria-label='Show the shopping cart']");
+    }
 }

@@ -1,6 +1,13 @@
+import { BasketPage } from "../pageObjects/BasketPage";
 import { HomePage } from "../pageObjects/HomePage";
 import { LoginPage } from "../pageObjects/LoginPage";
 import { RegistrationPage } from "../pageObjects/RegistrationPage";
+import { BasePage } from "../pageObjects/basePage";
+import { SelectAddressPage } from "../pageObjects/SelectAddressPage";
+import { DeliveryMethodPage } from "../pageObjects/DeliveryMethodPage";
+import { PaymentOptionsPage } from "../pageObjects/PaymentOptionsPage";
+import { OrderSummaryPage } from "../pageObjects/OrderSummaryPage";
+import { OrderCompletionPage } from "../pageObjects/OrderCompletionPage";
 
 describe("Juice-shop scenarios", () => {
   context("Without auto login", () => {
@@ -152,7 +159,7 @@ describe("Juice-shop scenarios", () => {
 
     
     // Create scenario - Validate product card amount
-    it.only("Validate product card amount", () => {
+    it("Validate product card amount", () => {
     HomePage.productCardAmount12.should('exist').and('have.text', '12');
     // Validate that the default amount of cards is 12
     HomePage.productCardAmount12.click();
@@ -167,26 +174,50 @@ describe("Juice-shop scenarios", () => {
     HomePage.productCardAmount36.should('exist').and('have.text', '36');
   });
 
-    // Create scenario - Buy Girlie T-shirt
+  // Create scenario - Buy Girlie T-shirt
+  it.only("Buy Girlie T-shirt", () => {
+   
     // Click on search icon
+    HomePage.searchIcon.click();
     // Search for Girlie
+    HomePage.searchText.type("Girlie");
+      HomePage.searchText.type("{enter}");
     // Add to basket "Girlie"
+    HomePage.addToBasketButton.click();
     // Click on "Your Basket" button
+    HomePage.checkBasketButton.click();
     // Create page object - BasketPage
+  
     // Click on "Checkout" button
+    BasketPage.checkoutButton.click();
     // Create page object - SelectAddressPage
+
     // Select address containing "United Fakedom"
+    SelectAddressPage.radioButton.click();
     // Click Continue button
+    SelectAddressPage.continueButton.click();
     // Create page object - DeliveryMethodPage
+
     // Select delivery speed Standard Delivery
+    DeliveryMethodPage.deliverySpeed.click();
     // Click Continue button
+    DeliveryMethodPage.continueButton.click();
     // Create page object - PaymentOptionsPage
+
     // Select card that ends with "5678"
+    PaymentOptionsPage.payment.click();
     // Click Continue button
+    PaymentOptionsPage.continueButton.click();
     // Create page object - OrderSummaryPage
+
     // Click on "Place your order and pay"
+    OrderSummaryPage.placeOrder.click();
     // Create page object - OrderCompletionPage
+
     // Validate confirmation - "Thank you for your purchase!"
+    OrderCompletionPage.validateOrderCompleation.should('exist').and('have.text', 'Thank you for your purchase!');
+  });
+
 
     // Create scenario - Add address
     // Click on Account
