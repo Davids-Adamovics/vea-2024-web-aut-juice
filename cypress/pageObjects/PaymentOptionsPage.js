@@ -5,8 +5,8 @@ export class PaymentOptionsPage extends BasePage {
         return "/#/payment/shop";
       }
 
-      static get payment() {
-        return cy.contains("mat-row", "************5678").parent().find('.mat-radio-button');
+      static get paymentOptions() {
+        return cy.get("mat-row");
       }
       
       static get continueButton() {

@@ -144,4 +144,11 @@ export class HomePage extends BasePage {
       return cy.get(`[aria-label="Go to saved address page"]`);
     }
 
+
+    // ========== add payment option ======
+
+    static get myPaymentOptions(){
+      return cy.get(`[aria-label="Go to saved payment methods page"]`);
+    }
+  
 }
