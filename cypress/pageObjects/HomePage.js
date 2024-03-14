@@ -84,4 +84,21 @@ export class HomePage extends BasePage {
     static get validateReview(){
       return cy.contains('p', 'K33p5 y0ur ju1cy 5plu773r 70 y0ur53lf!');
     }
+
+    // ======== Add a review ======== 
+    static get clickRaspberryCard(){
+      return cy.contains('div', 'Raspberry Juice (1000ml)');
+    }
+
+    static get writeAreview(){
+      return cy.get("[aria-label='Text field to review a product']");
+    }
+
+    static get submitButton(){
+      return cy.get("button#submitButton");
+    }
+
+    static get validateReviewTastesLikeMEtal(){
+      return cy.contains('p', 'Tastes like metal');
+    }
 }
