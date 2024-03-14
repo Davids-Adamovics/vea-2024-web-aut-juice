@@ -8,6 +8,8 @@ import { DeliveryMethodPage } from "../pageObjects/DeliveryMethodPage";
 import { PaymentOptionsPage } from "../pageObjects/PaymentOptionsPage";
 import { OrderSummaryPage } from "../pageObjects/OrderSummaryPage";
 import { OrderCompletionPage } from "../pageObjects/OrderCompletionPage";
+import { SavedAddressesPage } from "../pageObjects/SavedAddressesPage";
+import { CreateAddressPage } from "../pageObjects/CreateAddressPage";
 
 describe("Juice-shop scenarios", () => {
   context("Without auto login", () => {
@@ -175,7 +177,7 @@ describe("Juice-shop scenarios", () => {
   });
 
   // Create scenario - Buy Girlie T-shirt
-  it.only("Buy Girlie T-shirt", () => {
+  it("Buy Girlie T-shirt", () => {
    
     // Click on search icon
     HomePage.searchIcon.click();
@@ -218,17 +220,37 @@ describe("Juice-shop scenarios", () => {
     OrderCompletionPage.validateOrderCompleation.should('exist').and('have.text', 'Thank you for your purchase!');
   });
 
-
-    // Create scenario - Add address
+  // Create scenario - Add address
+  it.only("Add address", () => {
     // Click on Account
+    HomePage.accountButton.click();
     // Click on Orders & Payment
+    HomePage.ordersAndPaymentButton.click();
     // Click on My saved addresses
+    HomePage.mySavedAddresses.click();
     // Create page object - SavedAddressesPage
+
     // Click on Add New Address
+    SavedAddressesPage.addNewAdressButton.click();
     // Create page object - CreateAddressPage
+
     // Fill in the necessary information
+    CreateAddressPage.addcountry.type("Latvia");
+    CreateAddressPage.addName.type("Davids");
+    var randomNumber = "2" + Math.round(Math.random() * 10000000);
+    CreateAddressPage.addMobileNumber.type(randomNumber);
+    var randomZipinLV = "LV-" + Math.round(Math.random() * 9999);
+    CreateAddressPage.addZipCode.type(randomZipinLV);
+    var address = "IelasNosaukums" + Math.round(Math.random() * 100);
+    CreateAddressPage.addAddress.type(address);
+    CreateAddressPage.addCity.type("Ventspils");
+    CreateAddressPage.addState.type("Latvia");
     // Click Submit button
+    CreateAddressPage.clickSubmitButton.click();
     // Validate that previously added address is visible
+    SavedAddressesPage.checkaddress.filter(':contains("Davids")').should('exist');
+
+  });
 
     // Create scenario - Add payment option
     // Click on Account

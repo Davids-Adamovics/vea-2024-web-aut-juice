@@ -133,4 +133,15 @@ export class HomePage extends BasePage {
     static get checkBasketButton(){
       return cy.get("[aria-label='Show the shopping cart']");
     }
+
+    // ======== Add address ======== 
+    static get ordersAndPaymentButton(){
+      return cy.get(`[aria-label="Show Orders and Payment Menu"][role="menuitem"]`);
+
+    }
+
+    static get mySavedAddresses(){
+      return cy.get(`[aria-label="Go to saved address page"]`);
+    }
+
 }
