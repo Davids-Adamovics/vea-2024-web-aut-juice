@@ -1,4 +1,6 @@
 import { HomePage } from "../pageObjects/HomePage";
+import { LoginPage } from "../pageObjects/LoginPage";
+import { RegistrationPage } from "../pageObjects/RegistrationPage";
 
 describe("Juice-shop scenarios", () => {
   context("Without auto login", () => {
@@ -9,22 +11,27 @@ describe("Juice-shop scenarios", () => {
     });
 
     it("Login", () => {
-      // Click Account button
-      // Click Login button
-      // Set email value to "demo"
-      // Set password value to "demo"
-      // Click Log in
-      // Click Account button
-      // Validate that "demo" account name appears in the menu section
+      HomePage.accountButton.click();
+      HomePage.loginButton.click();
+      LoginPage.userEmailField.type("demo");
+      LoginPage.userPasswordField.type("demo");
+      LoginPage.loginButton.click();
+      HomePage.accountButton.click();
+      HomePage.validateName.should("have.text", " account_circle  demo  account_circle  demo ");
     });
 
-    it("Registration", () => {
+    it.only("Registration", () => {
       // Click Account button
+      HomePage.accountButton.click();
       // Login button
+      HomePage.loginButton.click();
       // Click "Not yet a customer?"
+      HomePage.notYetCustomer.click();
       // Find - how to generate random number in JS
       // Use that number to genarate unique email address, e.g.: email_7584@ebox.com
       // Save that email address to some variable
+      var randomNumberAndGmail = "email_"+Math.round(Math.random()*100000)+"@gmail.com"
+      RegistrationPage.registerEmailField.type(randomNumberAndGmail);
       // Fill in password field and repeat password field with same password
       // Click on Security Question menu
       // Select  "Name of your favorite pet?"
