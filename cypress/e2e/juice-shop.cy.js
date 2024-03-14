@@ -20,7 +20,7 @@ describe("Juice-shop scenarios", () => {
       HomePage.validateName.should("have.text", " account_circle  demo  account_circle  demo ");
     });
 
-    it.only("Registration", () => {
+    it("Registration", () => {
       // Click Account button
       HomePage.accountButton.click();
       // Login button
@@ -64,11 +64,17 @@ describe("Juice-shop scenarios", () => {
       HomePage.visit();
     });
 
-    it("Search and validate Lemon", () => {
+    it.only("Search and validate Lemon", () => {
       // Click on search icon
+      HomePage.searchIcon.click();
       // Search for Lemon
+      HomePage.searchText.type("Lemon");
+      HomePage.searchText.type("{enter}");
       // Select a product card - Lemon Juice (500ml)
+      HomePage.clickLemonCard.click();
       // Validate that the card (should) contains "Sour but full of vitamins."
+      HomePage.validateDescription.should('exist').and('have.text', 'Sour but full of vitamins.');
+
     });
 
     // Create scenario - Search 500ml and validate Lemon, while having multiple cards
