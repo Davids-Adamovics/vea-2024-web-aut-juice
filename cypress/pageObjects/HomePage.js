@@ -71,4 +71,17 @@ export class HomePage extends BasePage {
   static get validateStrawberryCard(){
     return cy.contains('div', 'Sweet & tasty!');
   }
+
+    // ======== Read a review ======== 
+    static get clickKingOfTheHillCard(){
+      return cy.contains('div', 'OWASP Juice Shop "King of the Hill" Facemask');
+    }
+
+    static get clickReviews(){
+      return cy.get("[aria-label='Expand for Reviews']");
+    }
+
+    static get validateReview(){
+      return cy.contains('p', 'K33p5 y0ur ju1cy 5plu773r 70 y0ur53lf!');
+    }
 }
